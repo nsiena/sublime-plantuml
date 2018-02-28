@@ -1,0 +1,4 @@
+{
+	"selector": "source.plantuml",
+	"shell_cmd": "plantuml -tsvg $file"
+}

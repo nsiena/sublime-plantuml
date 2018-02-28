@@ -1,0 +1,107 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: PlantUML
+file_extensions:
+  - puml
+  - plantuml
+scope: source.plantuml
+variables:
+  ident: '[A-Za-z_][A-Za-z_0-9]*'
+contexts:
+  main:
+    - match: ^\s*(@startuml|@enduml)\b
+      scope: keyword.control.plantuml
+
+    - match: ^\s*'.*$
+      scope: comment.line.plantuml
+
+    - match: ("[^"]*")
+      scope: string.quoted.double.plantuml
+
+    - match: (\[\*\]|\(\*\))
+      scope: constant.language.plantuml
+
+    - match: ^\s*(\([^\)]+\))
+      scope: entity.name.other.state
+
+    - match: (:[^\)]+:)
+      scope: entity.name.other.actor
+
+    - match: (:[^\)]+[^;\|<>/\]\}]+[;\|<>/\]\}])
+      scope: entity.name.other.activity
+
+    - match: (<\$[^\)]+>)
+      scope: entity.name.other.icon
+
+    - match: (\[[^\)]+\])
+      scope: entity.name.other.activity_label
+
+    - match: ^\s*(abstract|actor|agent|archimate|artifact|boundary|box|card|class|cloud|collections|component|control|database|entity|enum|file|folder|frame|interface|node|object|order|package|participant|queue|rect|rectangle|sprite|stack|state|storage|together|usecase)\b|(^\s*)\(\)
+      scope: storage.type.plantuml
+
+    - match: \bas\b|<<\s*(\(\s*\w+\s*(,\s*#([0-9A-Fa-f]{6,6}|\w+)\s*)?\))?[^\(>]+>>
+      scope: storage.modifier.plantuml
+
+
+    - match: </?(b|font|color|size)\b([^>]*)>
+      scope: markup.bold
+
+    - match: </?u\b([^>]*)>
+      scope: markup.undeline
+
+    - match: </?i\b([^>]*)>
+      scope: markup.italic
+
+    - match: </?(del|strike)\b([^>]*)>
+      scope: markup.deleted
+
+    - match: </?img\b([^>]*)>
+      scope: markup.inline
+
+
+    - match: \{(field|method|static|abstract)\}
+      scope: storage.modifier.plantuml
+
+    - match: ^\s*([hr]?note(\s+(over\b|(left|right|top|bottom)(\s+of\b|\s+on\s+link|\s*:|\s*$)|on\s+link)?))|\b(end\s+note)\b
+      scope: storage.type.plantuml
+
+    - match: \b(legend\s+(left|right|top|bottom))\b|\bend\s*legend\b
+      scope: storage.type.plantuml
+
+    - match: (===[^=]+===)
+      scope: entity.name.label.plantuml
+
+    - match: (\b|\s)("(\d+|\*)"\s*)?([\*o<#x\}\+\^0]|<\||<<|\(0|//|\\\\)?[-\.~=]+((\[[^\]]*\])?(right|left|up|down|[rlud]|\(?0\)?)?[-\.~=]+)?([\*o>#x\{\+\^0]|\|>|>>|\(0|//|\\\\)?(\s*"(\d+|\*)")?(\b|\s)
+      scope: keyword.operator.relationship.plantuml
+
+    - match: ^\s*(->|-(left|right|up|down|[lrud])?->)
+      scope: keyword.operator.flow.plantuml
+
+    - match: (?:^\s*)([=\-\.\|_]{2,}([^=\-\.\|_]+[=\-\.\|_]+)?)\s*$
+      scope: keyword.control.divider.plantuml
+
+    - match: \b(activate|again|also|alt|autonumber|break|center|create|critical|deactivate|destroy|else|end|endif|endwhile|footbox|footer|fork|group|header|hide|if|left\s+to\s+right\s+direction|loop|namespace|newpage|opt|package|page|par|partition|repeat|return|rotate|show|skin|skinparam|start|stop|then|title|top\s+to\s+bottom\s+directiondirection|while)\b|!define\b
+      scope: keyword.control.plantuml
+
+    # skinparam name
+    - match: \b((?i)[A-Z]\w+(Color|Size|Font|Style|Name))\b
+#      scope: string.plantuml
+      scope: variable.other.plantuml
+
+    # color name
+    - match: (#?\b((?i)AliceBlue|AntiqueWhite|Aqua|Aquamarine|Azure|Beige|Bisque|Black|BlanchedAlmond|Blue|BlueViolet|Brown|BurlyWood|CadetBlue|Chartreuse|Chocolate|Coral|CornflowerBlue|Cornsilk|Crimson|Cyan|DarkBlue|DarkCyan|DarkGoldenRod|DarkGray|DarkGreen|DarkGrey|DarkKhaki|DarkMagenta|DarkOliveGreen|DarkOrchid|DarkRed|DarkSalmon|DarkSeaGreen|DarkSlateBlue|DarkSlateGray|DarkSlateGrey|DarkTurquoise|DarkViolet|Darkorange|DeepPink|DeepSkyBlue|DimGray|DimGrey|DodgerBlue|FireBrick|FloralWhite|ForestGreen|Fuchsia|Gainsboro|GhostWhite|Gold|GoldenRod|Gray|Green|GreenYellow|Grey|HoneyDew|HotPink|IndianRed|Indigo|Ivory|Khaki|Lavender|LavenderBlush|LawnGreen|LemonChiffon|LightBlue|LightCoral|LightCyan|LightGoldenRodYellow|LightGray|LightGreen|LightGrey|LightPink|LightSalmon|LightSeaGreen|LightSkyBlue|LightSlateGray|LightSlateGrey|LightSteelBlue|LightYellow|Lime|LimeGreen|Linen|Magenta|Maroon|MediumAquaMarine|MediumBlue|MediumOrchid|MediumPurple|MediumSeaGreen|MediumSlateBlue|MediumSpringGreen|MediumTurquoise|MediumVioletRed|MidnightBlue|MintCream|MistyRose|Moccasin|NavajoWhite|Navy|OldLace|Olive|OliveDrab|Orange|OrangeRed|Orchid|PaleGoldenRod|PaleGreen|PaleTurquoise|PaleVioletRed|PapayaWhip|PeachPuff|Peru|Pink|Plum|PowderBlue|Purple|Red|RosyBrown|RoyalBlue|SaddleBrown|Salmon|SandyBrown|SeaGreen|SeaShell|Sienna|Silver|SkyBlue|SlateBlue|SlateGray|SlateGrey|Snow|SpringGreen|SteelBlue|Tan|Teal|Thistle|Tomato|Turquoise|Violet|Wheat|White|WhiteSmoke|Yellow|YellowGreen))\b
+      scope: constant.numeric.color.named.plantuml
+
+    - match: ^\s*[\-#~\+]
+      scope: storage.modifier.plantuml
+
+    - match: \b\d+\b
+      scope: constant.numeric.plantuml
+
+    - match: (#[a-fA-F0-9]{6,6})\b
+      scope: constant.numeric.color.hex.plantuml
+
+    - match: \b(\w+)\b
+      scope: variable.other.plantuml
+
