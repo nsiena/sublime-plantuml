@@ -28,8 +28,11 @@ contexts:
     - match: (:[^\)]+:)
       scope: entity.name.other.actor
 
-    - match: (:[^\)]+[^;\|<>/\]\}]+[;\|<>/\]\}])
+    - match: (:[^\)]+[^;\|<>/\]\}]+[;\|<>/\]\}](?=[\s]|$))
       scope: entity.name.other.activity
+
+    - match: (\|[^#][^\|]*\|)
+      scope: entity.name.label.swimlane
 
     - match: (<\$[^\)]+>)
       scope: entity.name.other.icon

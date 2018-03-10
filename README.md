@@ -7,8 +7,7 @@ PlantUML support for Sublime Text 3
 	* .puml
 	* .plantuml
 * keyword highlighting
-	* does not analyze syntax
-	* by simple pattern matching (inaccurate)
+	* by simple pattern matching (inaccurate due to no syntax ayalysis)
 * build command
 	* [Tool] - [Build] generates an SVG file
 	* if you need other type of image files, modify PlantUML.sublime-build
@@ -16,7 +15,7 @@ PlantUML support for Sublime Text 3
 ## Installation
 
 first, install Graphviz and PlantUML packages.
-in the case of MacOS:
+for example, in the case of macOS:
 
 ```sh
 $ brew install graphviz
